@@ -1,13 +1,5 @@
 import React,{Component} from 'react';
-import Block from "../model/Block";
-import {Color, FontSize, FontWeight, FontFamily} from "../util/StyleUtil";
-import BlockType from "../model/BlockType";
-import Content from "../model/Content";
-import TextContent from "../component/TextContent";
-import TextFieldState from "../model/TextFieldState";
-import TextField from "../component/TextField";
-import SelectionUtil from "../util/SelectionUtil";
-import * as StyleUtil from "../util/StyleUtil";
+import {TextField, BlockType, Block, TextFieldState, StyleUtil, SelectionUtil} from '../easy-tf';
 
 export default class TextFieldTest extends Component{
     render() {
