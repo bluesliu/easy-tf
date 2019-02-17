@@ -90,7 +90,16 @@ export default class TextField extends Component {
                  }}
                  onCompositionEnd={(e) => {
                      this.onCompositionEndHandler(e)
-                 }}><TextContent content={content}/></div>
+                 }}
+                 onPaste={(e) => {
+                     this.onPasteHandler(e);
+                 }}
+                 onCut={(e) => {
+                     this.onCutHandler(e);
+                 }}
+                onInput={(e)=>{
+                    console.log('input',this.tfState.text);
+                }}><TextContent content={content}/></div>
         )
     }
 
@@ -235,6 +244,27 @@ export default class TextField extends Component {
             this.#isCompositionStart = false;
             tfState.insertText(data, selection.startOffset)
         }, this, 0);
+    }
+
+    /**
+     *
+     * @param {ClipboardEvent} e
+     */
+    onPasteHandler(e) {
+        this.#mouseDown = false;
+        e.preventDefault();
+        const text = e.clipboardData.getData('text');
+        const {selection} = this.tfState;
+        this.tfState.insertText(text, selection.startOffset);
+    }
+
+    onCutHandler(e) {
+        e.preventDefault();
+        const {selection} = this.tfState;
+        if (selection.length > 0) {
+            document.execCommand('copy', false, 'abc');
+            this.tfState.deleteText(selection.startOffset, selection.length);
+        }
     }
 
     /**

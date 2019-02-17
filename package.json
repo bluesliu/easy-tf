@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "description": "easy-tf 是用 React 实现的富文本编辑器。",
   "main": "easy-tf.js",
-  "keywords": ["react","rich","editor","textfield"],
+  "keywords": [
+    "react",
+    "rich",
+    "editor",
+    "textfield"
+  ],
   "author": "blues",
   "license": "ISC",
   "repository": {
@@ -12,7 +17,7 @@
   },
   "dependencies": {
     "easy-event": "^1.1.0",
-    "int-range": "^1.3.2",
+    "int-range": "^1.3.3",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
