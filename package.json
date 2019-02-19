@@ -1,6 +1,6 @@
 {
   "name": "easy-tf",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "easy-tf 是用 React 实现的富文本编辑器。",
   "main": "easy-tf.js",
   "keywords": [
