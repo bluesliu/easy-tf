@@ -154,6 +154,14 @@ export  default class Content {
     }
 
     /**
+     * 获得文本长度
+     * @returns {number}
+     */
+    get length() {
+        return this.getText().length;
+    }
+
+    /**
      * 获得段落的范围
      * @param {string} key
      * @returns {Range}

@@ -185,8 +185,16 @@ export default class TextFieldState extends EventDispatcher {
         this.#style = null;
     }
 
+    /**
+     * 获得文本内容
+     * @returns {string}
+     */
     get text() {
         return this.#content.getText();
+    }
+
+    get length() {
+        return this.#content.length;
     }
 
     set text(value) {

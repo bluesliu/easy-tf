@@ -97,9 +97,9 @@ export default class TextField extends Component {
                  onCut={(e) => {
                      this.onCutHandler(e);
                  }}
-                onInput={(e)=>{
-                    console.log('input',this.tfState.text);
-                }}><TextContent content={content}/></div>
+                 onInput={(e) => {
+                     this.onInputHandler(e);
+                 }}><TextContent content={content}/></div>
         )
     }
 
@@ -137,9 +137,9 @@ export default class TextField extends Component {
                         const beforeBlock = list[i - 1];
                         if (beforeBlock.length === 0) {
                             e.preventDefault();
-                            const range = selection.getBlockRange(beforeBlock.key);
+                            const range = content.getBlockRange(beforeBlock.key);
                             selection.update(beforeBlock.key, range.begin, beforeBlock.key, range.begin);
-                            selection.set();
+                            SelectionUtil.set(this.tfState);
                             return;
                         }
                     }
@@ -227,7 +227,7 @@ export default class TextField extends Component {
         const tfState = this.tfState;
         const selection = tfState.selection;
         if (selection.length > 0) {
-            tfState.deleteText(selection.startOffset, selection.length)
+            tfState.deleteText(selection.startOffset, selection.length);
         }
     }
 
@@ -242,8 +242,25 @@ export default class TextField extends Component {
         const selection = tfState.selection;
         TimerUtil.setTimeout(() => {
             this.#isCompositionStart = false;
-            tfState.insertText(data, selection.startOffset)
+            tfState.insertText(data, selection.startOffset);
         }, this, 0);
+    }
+
+    onInputHandler(e){
+        if(this.#isCompositionStart)return;
+        // 支持touch bar的输入，此时dom节点、光标位置已经发生改变，只要同步state就行，不用重新渲染
+        const tfState = this.tfState;
+        const selection = tfState.selection;
+        if (selection.length > 0) {
+            tfState.content.deleteTextByRange(selection.range);
+        }
+        const oldText = tfState.text;
+        const newText = e.target.innerText;
+        const addLen = newText.length - oldText.length;
+        if(addLen>0){
+            const addText = newText.substr(selection.startOffset, addLen);
+            tfState.insertText(addText, selection.startOffset);
+        }
     }
 
     /**

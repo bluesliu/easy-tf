@@ -6,7 +6,7 @@ export default class TextFieldTest extends Component{
 
 
         //
-        const block2 = new Block('01234567890abcdefghijk');
+        const block2 = new Block('01234😊56789😁');
         block2.type = BlockType.BLOCK;
 
         const tfState = TextFieldState.create();
@@ -53,6 +53,10 @@ export default class TextFieldTest extends Component{
                     tfState.clearStyle();
                 }}>清除样式</button>
 
+                <button onClick={(e)=>{
+                    console.log(tfState.text.length);
+                    console.log(tfState.length);
+                }}>获取文本长度</button>
                 <TextField tfState={tfState}/>
             </div>
         )

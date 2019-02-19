@@ -250,6 +250,9 @@ export default class SelectionUtil {
             delRange.begin -= 1;
             delRange.begin = Math.max(delRange.begin, 0);
             delRange.length = 1;
+            if(tfState.text.codePointAt(delRange.begin-1) > 0xFFFF){    //占用4个字节的Unicode
+                delRange.min -= 1;
+            }
         }
         return delRange;
     }
@@ -267,9 +270,11 @@ export default class SelectionUtil {
             delRange.length = 0;
         }
         else if(delRange.length === 0){ //当前光标没有框选，所以删除的范围是右边一格
-            // delRange.begin += 1;
             delRange.begin = Math.min(delRange.begin, tfState.text.length);
             delRange.length = 1;
+            if(tfState.text.codePointAt(delRange.begin) > 0xFFFF){  //占用4个字节的Unicode
+                delRange.length += 1;
+            }
         }
         return delRange;
     }
