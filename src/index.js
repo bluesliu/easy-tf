@@ -1,11 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import TextFieldTest from "./test/TextFieldTest";
+import TextField from "./component/TextField";
+import Block from "./model/Block";
+import BlockType from "./model/BlockType";
+import Content from "./model/Content";
+import SelectionRange from "./model/SelectionRange";
+import TextFieldState from "./model/TextFieldState";
+import SelectionUtil from "./util/SelectionUtil";
+import * as StyleUtil from "./util/StyleUtil";
 
-ReactDOM.render(<TextFieldTest/>, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export {
+    TextField,
+    Block,
+    BlockType,
+    Content,
+    SelectionRange,
+    TextFieldState,
+    SelectionUtil,
+    StyleUtil
+}

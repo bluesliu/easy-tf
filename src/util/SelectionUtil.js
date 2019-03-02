@@ -34,7 +34,7 @@ export default class SelectionUtil {
 
         if(content.blockCount===0){
             selection.reset();
-            console.log('光标位置:', selection.toString());
+            // console.log('光标位置:', selection.toString());
             return;
         }
 
@@ -141,7 +141,7 @@ export default class SelectionUtil {
         const endOffset = getGlobalOffset(selRange.endContainer, selRange.endOffset);
         selection.update(startKey, startOffset, endKey, endOffset);
 
-        console.log('光标位置:', selection.toString());
+        // console.log('光标位置:', selection.toString());
     }
 
     /**
